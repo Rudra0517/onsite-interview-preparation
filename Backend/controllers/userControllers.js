@@ -126,9 +126,14 @@ const userRegisterController = async (req, res) => {
 
 const userUpdateController = async (req, res) => {
   const { course, gender, username } = req.body;
-  const data = req.headers.authorization;
+  const authHeader = req.headers.authorization;
 
-  const token = data.split(" ")[1];
+  if (!authHeader) {
+    return res.status(401).json({
+      message: "Token missing",
+    });
+  }
+  const token = authHeader.split(" ")[1];
 
   const verifyData = jwt.verify(token, process.env.JWT_SECRET_KEY);
 
@@ -1269,7 +1274,6 @@ const filterQuestions = async (req, res) => {
         },
       },
     ]);
-    console.log(data);
     res.json(data);
   } catch (error) {
     console.log(error.message);

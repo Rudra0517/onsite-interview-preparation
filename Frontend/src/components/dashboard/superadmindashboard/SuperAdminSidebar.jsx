@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../context/AuthContext";
 import { HiMiniUserGroup } from "react-icons/hi2";
 import { IoPersonAdd } from "react-icons/io5";
+import ROUTES from "../../../constants/routes";
 
 const SuperAdminSidebar = () => {
   const navigate = useNavigate();
@@ -10,14 +11,14 @@ const SuperAdminSidebar = () => {
 
   const handleLogout = async () => {
     await logout();
-    navigate("/login");
+    navigate(ROUTES.LOGIN);
   };
   return (
     <aside className="w-[100%] h-full bg-gray-900 shadow-lg flex flex-col items-center justify-between text-gray-200">
       <div className="w-full h-[50%] flex justify-evenly items-center flex-col">
         <NavLink
           className=" w-[85%] flex items-center gap-3 px-4 py-2 rounded-lg text-gray-200 font-medium hover:bg-[#474767] transition"
-          to="/dashboard/superadmin/pendingadmins"
+          to={ROUTES.PENDING_ADMINS}
         >
           <IoPersonAdd />
           <span className="text-[12px]">Pending Admins</span>
@@ -25,7 +26,7 @@ const SuperAdminSidebar = () => {
         <NavLink
           className="w-[85%] flex items-center gap-3 px-4 py-2 rounded-lg text-gray-200
         font-medium hover:bg-[#474767] hover:text-gray-200  transition"
-          to="/dashboard/superadmin/alladmins"
+          to={ROUTES.ALL_ADMINS}
         >
           <HiMiniUserGroup />
           <span className="text-[12px]">All Admins</span>
@@ -33,7 +34,7 @@ const SuperAdminSidebar = () => {
         <NavLink
           className="w-[85%] flex items-center gap-3 px-4 py-2 rounded-lg text-gray-200
         font-medium hover:bg-[#474767] hover:text-gray-200  transition"
-          to="/dashboard/superadmin/allusers"
+          to={ROUTES.ALL_USERS}
         >
           <HiMiniUserGroup />
           <span className="text-[12px]">All Users</span>

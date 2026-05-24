@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { axiosInstance } from "../../API/axiosInstance";
 import { useAuth } from "../../context/AuthContext";
+import ROUTES from "../../constants/routes";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -28,9 +29,9 @@ const Login = () => {
 
         login({ role, username, email, _id });
 
-        if (role === "Admin") navigate("/dashboard/admin");
-        else if (role === "User") navigate("/dashboard/user");
-        else if (role === "Super Admin") navigate("/dashboard/superadmin");
+        if (role === "Admin") navigate(ROUTES.ADMIN_DASHBOARD);
+        else if (role === "User") navigate(ROUTES.USER_DASHBOARD);
+        else if (role === "Super Admin") navigate(ROUTES.SUPERADMIN_DASHBOARD);
       }
       toast.success("Login successful");
 
@@ -88,7 +89,7 @@ const Login = () => {
 
           <div className="text-right">
             <Link
-              to="/forgetpassword"
+              to={ROUTES.FORGETPASSWORD}
               className="text-md text-amber-400 hover:text-amber-500 underline transition"
             >
               Forgot password?
@@ -105,7 +106,7 @@ const Login = () => {
           <p className="text-center mt-2">
             If you are not registered yet?
             <span className="text-amber-500 font-semibold">
-              <Link to="/register"> Register </Link>
+              <Link to={ROUTES.REGISTER}> Register </Link>
             </span>
             here
           </p>

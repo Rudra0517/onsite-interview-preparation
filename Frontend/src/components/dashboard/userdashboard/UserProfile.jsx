@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { axiosInstance } from "../../../API/axiosInstance";
+import { useAuth } from "../../../context/AuthContext";
 
 const UserProfile = () => {
   const [user, setUser] = useState({});
-  const fdata = async () => {
-    const { data } = await axiosInstance("/me", { auth: true });
-    setUser(data.data);
-  };
-  useEffect(() => {
-    fdata();
-  }, []);
+  const { username, email, course } = useAuth();
 
   return (
     <div className="w-full h-full flex items-center justify-center bg-gray-100 p-4">
@@ -22,23 +17,21 @@ const UserProfile = () => {
           {/* Avatar */}
           <div className="absolute -top-10 left-6">
             <div className="h-20 w-20 rounded-full bg-amber-300 flex items-center justify-center text-white text-3xl font-bold shadow-md">
-              {user.username?.slice(0, 1)?.toUpperCase()}
+              {username?.slice(0, 1)?.toUpperCase()}
             </div>
           </div>
 
           {/* User Info */}
           <div className="mt-12">
             <p className="text-sm text-gray-500">User</p>
-            <h2 className="text-xl font-semibold text-gray-800">
-              {user.username}
-            </h2>
+            <h2 className="text-xl font-semibold text-gray-800">{username}</h2>
           </div>
 
           {/* Details */}
           <div className="mt-6 space-y-4">
             <div>
               <p className="text-sm text-gray-500">Email</p>
-              <p className="text-gray-800 font-medium">{user.email}</p>
+              <p className="text-gray-800 font-medium">{email}</p>
             </div>
 
             {/* <div>
@@ -48,7 +41,7 @@ const UserProfile = () => {
 
             <div>
               <p className="text-sm text-gray-500">Course</p>
-              <p className="text-gray-800 font-medium">{user.course}</p>
+              <p className="text-gray-800 font-medium">{course}</p>
             </div>
           </div>
 

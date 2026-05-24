@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import { axiosInstance } from "../../API/axiosInstance";
+import ROUTES from "../../constants/routes";
 
 const Register = () => {
+  const navigate = useNavigate();
   const [status, setStatus] = useState("User");
   const [userFormData, setUserFormData] = useState({
     username: "",
@@ -18,8 +20,6 @@ const Register = () => {
     gender: "",
     course: "",
   });
-
-  const navigate = useNavigate();
 
   //* User logic
   const userHandleInput = (e) => {
@@ -39,7 +39,7 @@ const Register = () => {
         course: "",
       });
 
-      navigate("/login");
+      navigate(ROUTES.LOGIN);
       return toast.success("Registered successfully");
     } catch (error) {
       const { status, data } = error.response;
@@ -71,7 +71,7 @@ const Register = () => {
       toast.success(
         "Your data is sent to the super admin. Please wait for approval.",
       );
-      navigate("/login");
+      navigate(ROUTES.LOGIN);
     } catch (error) {
       if (error.response.status === 409) {
         return toast.warn("You are alredy registered");

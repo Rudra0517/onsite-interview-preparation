@@ -40,12 +40,13 @@ const {
   updateQuestionController,
   deleteQuestionController,
 } = require("./controllers/userControllers");
+
 const authMiddleware = require("./middleware/authMiddleware");
 const authorization = require("./middleware/authorization");
 
 app.get("/me", authMiddleware, (req, res) => {
   try {
-    res.json({ data: req.user, isLoggedIn: true });
+    res.json({ ...req.user, isLoggedIn: true });
   } catch (error) {
     console.log(error);
     res.send({ isLoggedIn: false });

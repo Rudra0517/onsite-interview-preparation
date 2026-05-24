@@ -16,7 +16,6 @@ const AllActiveUsers = () => {
 
   const freezeUser = async (email, isBlocked) => {
     try {
-      console.log(isBlocked);
       const data = await axiosInstance.put("/freeze", {
         isBlocked: isBlocked,
         email: email,

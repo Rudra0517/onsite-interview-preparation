@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { axiosInstance } from "../../../API/axiosInstance";
+import { useAuth } from "../../../context/AuthContext";
 
 const AdminProfile = () => {
   const [user, setUser] = useState({});
+  const { userData } = useAuth();
   const fdata = async () => {
-    const { data } = await axiosInstance("/me", { auth: true });
-    setUser(data.data);
+    setUser(userData);
   };
   useEffect(() => {
     fdata();

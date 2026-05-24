@@ -5,6 +5,7 @@ import { FaUsers } from "react-icons/fa6";
 import { LuNotebookText } from "react-icons/lu";
 import { IoIosLogOut } from "react-icons/io";
 import { IoIosAddCircleOutline } from "react-icons/io";
+import ROUTES from "../../../constants/routes";
 
 const UserSidebar = () => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const UserSidebar = () => {
 
   const handleLogout = async () => {
     await logout();
-    navigate("/login");
+    navigate(ROUTES.LOGIN);
   };
 
   return (
@@ -20,7 +21,7 @@ const UserSidebar = () => {
       <div className="w-full h-[30%] mt-[20px] flex justify-start gap-5 items-center flex-col">
         <NavLink
           className=" w-[85%] flex items-center gap-3 px-4 py-2 rounded-lg text-gray-200 font-medium hover:bg-[#474767] transition"
-          to="/dashboard/user/panel"
+          to={ROUTES.USER_PANNEL}
         >
           <FaUsers />
           <span className="text-[12px]">Dashboard</span>
@@ -28,7 +29,7 @@ const UserSidebar = () => {
         <NavLink
           className="w-[85%] flex items-center gap-3 px-4 py-2 rounded-lg text-gray-200
         font-medium hover:bg-[#474767] hover:text-gray-200  transition"
-          to="/dashboard/user/addreview"
+          to={ROUTES.ADD_REVIEW}
         >
           <IoIosAddCircleOutline />
           <span className="text-[12px]">Add Review</span>
@@ -36,7 +37,7 @@ const UserSidebar = () => {
         <NavLink
           className="w-[85%] flex items-center gap-3 px-4 py-2 rounded-lg text-gray-200
         font-medium hover:bg-[#474767] hover:text-gray-200  transition"
-          to="/dashboard/user/profile"
+          to={ROUTES.USER_PROFILE}
         >
           <LuNotebookText />
           <span className="text-[12px]">Profile</span>

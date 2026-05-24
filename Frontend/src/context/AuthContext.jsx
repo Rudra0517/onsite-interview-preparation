@@ -4,6 +4,7 @@ import { axiosInstance } from "../API/axiosInstance";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  const [userData, setUserData] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [role, setRole] = useState(null);
   const [username, setUsername] = useState("");
@@ -13,9 +14,10 @@ export const AuthProvider = ({ children }) => {
     const checkAuthStatus = async () => {
       try {
         const res = await axiosInstance.get("/me");
-        setIsLoggedIn(res?.data?.isLoggedIn ?? false);
-        setRole(res?.data?.data?.role ?? null);
-        setUsername(res?.data?.data?.username ?? "");
+        setUserData(res.data);
+        setIsLoggedIn(res?.isLoggedIn ?? false);
+        setRole(res?.data?.role ?? null);
+        setUsername(res?.data?.username ?? "");
       } catch {
         setIsLoggedIn(false);
         setRole(null);
@@ -24,7 +26,6 @@ export const AuthProvider = ({ children }) => {
         setLoading(false);
       }
     };
-
     checkAuthStatus();
   }, []);
 
@@ -47,27 +48,32 @@ export const AuthProvider = ({ children }) => {
     setLoading(false);
   };
 
-  const refetchAuth = async () => {
-    try {
-      const res = await axiosInstance.get("/me");
-      setIsLoggedIn(res?.data?.isLoggedIn ?? false);
-      setRole(res?.data?.data?.role ?? null);
-      setUsername(res?.data?.data?.username ?? "");
-    } catch {
-      setIsLoggedIn(false);
-      setRole(null);
-      setUsername("");
-    }
-  };
+  useEffect(() => {
+    const refetchAuth = async () => {
+      try {
+        const { data } = await axiosInstance.get("/me");
+        setIsLoggedIn(data?.isLoggedIn ?? false);
+        setRole(data?.role ?? null);
+        setUsername(data?.username ?? "");
+      } catch {
+        setIsLoggedIn(false);
+        setRole(null);
+        setUsername("");
+      }
+    };
+    refetchAuth();
+  }, []);
 
   const value = {
     isLoggedIn,
     role,
     username,
+    email: userData.email,
+    course: userData.course,
     loading,
     logout,
     login,
-    refetchAuth,
+    userData,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

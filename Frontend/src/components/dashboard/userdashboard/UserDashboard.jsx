@@ -6,7 +6,7 @@ const UserDashboard = () => {
   const [subject, setSubject] = useState("");
   const [questionType, setQuestionType] = useState("");
   const [filteredQuestions, setFilteredQuestions] = useState([]);
-  const [companyType, setCompanyType] = useState("");
+  const [companyType, setCompanyType] = useState("All");
   const [location, setLocation] = useState("");
   const [questions, setQuestions] = useState([]);
 
@@ -36,8 +36,8 @@ const UserDashboard = () => {
   }, []);
 
   const handleSearch = async (e) => {
+    e.preventDefault();
     try {
-      e.preventDefault();
       const filterData = {
         course,
         subject,
@@ -132,7 +132,7 @@ const UserDashboard = () => {
               onChange={(e) => setCompanyType(e.target.value)}
               className="w-full border border-black/10 rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-amber-500"
             >
-              <option value="">All company</option>
+              <option value="All">All company</option>
               <option value="Start up">Start up</option>
               <option value="MNC">MNC</option>
             </select>

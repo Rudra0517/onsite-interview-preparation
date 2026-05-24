@@ -1,37 +1,70 @@
+import React, { lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
-import Layout from "../components/layout/Layout";
-import Home from "../components/home/Home";
-import About from "../components/about/About";
-import Contact from "../components/contact/Contact";
-import Service from "../components/service/Service";
-import Login from "../pages/login/Login";
-import Register from "../pages/register/Register";
-import ForgetPassword from "../pages/forgetpassword/ForgetPassword";
-import ErrorPage from "../pages/errorpage/ErrorPage";
+const Layout = lazy(() => import("../components/layout/Layout"));
+const Home = lazy(() => import("../components/home/Home"));
+const About = lazy(() => import("../components/about/About"));
+const Contact = lazy(() => import("../components/contact/Contact"));
+const Service = lazy(() => import("../components/service/Service"));
+const Login = lazy(() => import("../pages/login/Login"));
+const Register = lazy(() => import("../pages/register/Register"));
+const ForgetPassword = lazy(
+  () => import("../pages/forgetpassword/ForgetPassword"),
+);
+const ErrorPage = lazy(() => import("../pages/errorpage/ErrorPage"));
+const UserDashboard = lazy(
+  () => import("../components/dashboard/userdashboard/UserDashboard"),
+);
+const SuperadminDashboard = lazy(
+  () =>
+    import("../components/dashboard/superadmindashboard/SuperadminDashboard"),
+);
+const RoleRedirect = lazy(() => import("./RoleRedirect"));
+const Dashboard = lazy(() => import("../components/dashboard/Dashboard"));
+const PrivateRoute = lazy(() => import("../privateroute/PrivateRoute"));
+const AdminRoute = lazy(() => import("../privateroute/AdminRoute"));
+const UserRoute = lazy(() => import("../privateroute/UserRoute"));
+const SuperadminRoute = lazy(() => import("../privateroute/SuperadminRoute"));
+const AdminDashboard = lazy(
+  () => import("../components/dashboard/admindashboard/AdminDashboard"),
+);
+const CreateQuestion = lazy(
+  () => import("../components/dashboard/admindashboard/CreateQuestion"),
+);
+const AllUsers = lazy(
+  () => import("../components/dashboard/admindashboard/AllUsers"),
+);
+const AllQuestions = lazy(
+  () => import("../components/dashboard/admindashboard/AllQuestions"),
+);
+const AdminSetting = lazy(
+  () => import("../components/dashboard/admindashboard/AdminSetting"),
+);
+const PendingAdmins = lazy(
+  () => import("../components/dashboard/superadmindashboard/PendingAdmins"),
+);
+const AllAdmins = lazy(
+  () => import("../components/dashboard/superadmindashboard/AllAdmins"),
+);
+const AllActiveUsers = lazy(
+  () => import("../components/dashboard/superadmindashboard/AllActiveUsers"),
+);
+const UserPanel = lazy(
+  () => import("../components/dashboard/userdashboard/UserPanel"),
+);
+const UserProfile = lazy(
+  () => import("../components/dashboard/userdashboard/UserProfile"),
+);
+const UserAddReview = lazy(
+  () => import("../components/dashboard/userdashboard/UserAddReview"),
+);
+const AdminPannel = lazy(
+  () => import("../components/dashboard/admindashboard/AdminPannel"),
+);
+const AdminProfile = lazy(
+  () => import("../components/dashboard/admindashboard/AdminProfile"),
+);
 
-import UserDashboard from "../components/dashboard/userdashboard/UserDashboard";
-import SuperadminDashboard from "../components/dashboard/superadmindashboard/SuperadminDashboard";
-import RoleRedirect from "./RoleRedirect";
-import Dashboard from "../components/dashboard/Dashboard";
-import PrivateRoute from "../privateroute/PrivateRoute";
-import AdminRoute from "../privateroute/AdminRoute";
-import UserRoute from "../privateroute/UserRoute";
-import SuperadminRoute from "../privateroute/SuperadminRoute";
-import AdminDashboard from "../components/dashboard/admindashboard/AdminDashboard";
-import CreateQuestion from "../components/dashboard/admindashboard/CreateQuestion";
-import AllUsers from "../components/dashboard/admindashboard/AllUsers";
-import AllQuestions from "../components/dashboard/admindashboard/AllQuestions";
-import AdminSetting from "../components/dashboard/admindashboard/AdminSetting";
-import PendingAdmins from "../components/dashboard/superadmindashboard/PendingAdmins";
-import AllAdmins from "../components/dashboard/superadmindashboard/AllAdmins";
-import AllActiveUsers from "../components/dashboard/superadmindashboard/AllActiveUsers";
-import UserPanel from "../components/dashboard/userdashboard/UserPanel";
-import UserProfile from "../components/dashboard/userdashboard/UserProfile";
-import UserAddReview from "../components/dashboard/userdashboard/UserAddReview";
-import AdminPannel from "../components/dashboard/admindashboard/AdminPannel";
-import AdminProfile from "../components/dashboard/admindashboard/AdminProfile";
-
-export const routes = createBrowserRouter([
+const routes = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
@@ -41,7 +74,6 @@ export const routes = createBrowserRouter([
       { path: "about", element: <About /> },
       { path: "contact", element: <Contact /> },
       { path: "service", element: <Service /> },
-
       {
         path: "/dashboard",
         element: (
@@ -55,7 +87,7 @@ export const routes = createBrowserRouter([
             element: <RoleRedirect />,
           },
           {
-            path: "/dashboard/user",
+            path: "user",
             element: (
               <UserRoute>
                 <UserPanel />
@@ -63,25 +95,29 @@ export const routes = createBrowserRouter([
             ),
             children: [
               {
-                path: "/dashboard/user",
+                index: true,
                 element: <UserDashboard />,
               },
               {
-                path: "/dashboard/user/panel",
+                path: "panel",
                 element: <UserDashboard />,
               },
               {
-                path: "/dashboard/user/profile",
+                path: "profile",
                 element: <UserProfile />,
               },
               {
-                path: "/dashboard/user/addreview",
+                path: "addreview",
                 element: <UserAddReview />,
+              },
+              {
+                path: "*",
+                element: <ErrorPage />,
               },
             ],
           },
           {
-            path: "/dashboard/admin",
+            path: "admin",
             element: (
               <AdminRoute>
                 <AdminDashboard />
@@ -89,37 +125,41 @@ export const routes = createBrowserRouter([
             ),
             children: [
               {
-                path: "/dashboard/admin",
+                index: true,
                 element: <AdminPannel />,
               },
               {
-                path: "/dashboard/admin/adminpannel",
+                path: "adminpannel",
                 element: <AdminPannel />,
               },
               {
-                path: "/dashboard/admin/allusers",
+                path: "allusers",
                 element: <AllUsers />,
               },
               {
-                path: "/dashboard/admin/createquestion",
+                path: "createquestion",
                 element: <CreateQuestion />,
               },
               {
-                path: "/dashboard/admin/allquestions",
+                path: "allquestions",
                 element: <AllQuestions />,
               },
               {
-                path: "/dashboard/admin/setting",
+                path: "setting",
                 element: <AdminSetting />,
               },
               {
-                path: "/dashboard/admin/profile",
+                path: "profile",
                 element: <AdminProfile />,
+              },
+              {
+                path: "*",
+                element: <ErrorPage />,
               },
             ],
           },
           {
-            path: "/dashboard/superadmin",
+            path: "superadmin",
             element: (
               <SuperadminRoute>
                 <SuperadminDashboard />
@@ -127,24 +167,36 @@ export const routes = createBrowserRouter([
             ),
             children: [
               {
-                path: "/dashboard/superadmin",
+                index: true,
                 element: <PendingAdmins />,
               },
               {
-                path: "/dashboard/superadmin/pendingadmins",
+                path: "pendingadmins",
                 element: <PendingAdmins />,
               },
               {
-                path: "/dashboard/superadmin/alladmins",
+                path: "alladmins",
                 element: <AllAdmins />,
               },
               {
-                path: "/dashboard/superadmin/allusers",
+                path: "allusers",
                 element: <AllActiveUsers />,
+              },
+              {
+                path: "*",
+                element: <ErrorPage />,
               },
             ],
           },
+          {
+            path: "*",
+            element: <ErrorPage />,
+          },
         ],
+      },
+      {
+        path: "*",
+        element: <ErrorPage />,
       },
     ],
   },
@@ -161,3 +213,5 @@ export const routes = createBrowserRouter([
     ),
   },
 ]);
+
+export default routes;

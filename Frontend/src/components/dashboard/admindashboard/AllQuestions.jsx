@@ -5,8 +5,11 @@ import { axiosInstance } from "../../../API/axiosInstance";
 import { FiEdit2, FiTrash2 } from "react-icons/fi";
 import { ImCross } from "react-icons/im";
 import { toast } from "react-toastify";
+import { useAuth } from "../../../context/AuthContext";
 
 const AllQuestions = () => {
+  const { userData } = useAuth();
+  console.log(userData);
   const [toBeUpdateQuestion, setToBeUpdateQuestion] = useState({
     question: "",
     answer: "",
@@ -32,8 +35,7 @@ const AllQuestions = () => {
   useEffect(() => {
     const fdata = async () => {
       try {
-        const { data } = await axiosInstance.get("/me", { auth: true });
-        setCourse(data.data.course);
+        setCourse(userData.course);
       } catch (error) {
         console.log(error.message);
       }

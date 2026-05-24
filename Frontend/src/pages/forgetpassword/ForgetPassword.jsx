@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { axiosInstance } from "../../API/axiosInstance";
+import ROUTES from "../../constants/routes";
 
 const ForgetPassword = () => {
   const navigate = useNavigate();
@@ -44,7 +45,7 @@ const ForgetPassword = () => {
     } catch (error) {
       if (error.response.status === 409) {
         toast.warn("User not found");
-        navigate("/register");
+        navigate(ROUTES.REGISTER);
         return;
       }
       console.log(error.message);
@@ -76,12 +77,9 @@ const ForgetPassword = () => {
         password: formData.password,
         rePassword: formData.rePassword,
       };
-      const result = await axiosInstance.post(
-        "/resetpassword",
-        resetData,
-      );
+      const result = await axiosInstance.post("/resetpassword", resetData);
       toast.success("Password changed successfully");
-      navigate("/login");
+      navigate(ROUTES.LOGIN);
       setFormData({
         email: "",
         password: "",

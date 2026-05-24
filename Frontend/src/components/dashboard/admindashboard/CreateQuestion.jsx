@@ -4,10 +4,12 @@ import { axiosInstance } from "../../../API/axiosInstance";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useAuth } from "../../../context/AuthContext";
 
 const CreateQuestion = () => {
   const navigate = useNavigate();
   const [course, setCourse] = useState("");
+  const { userData } = useAuth();
   const [formData, setFormData] = useState({
     question: "",
     answer: "",
@@ -32,8 +34,7 @@ const CreateQuestion = () => {
   };
   useEffect(() => {
     const fdata = async () => {
-      const { data } = await axiosInstance.get("/me", { auth: true });
-      setCourse(data.data.course);
+      setCourse(userData.course);
     };
     fdata();
   }, []);
