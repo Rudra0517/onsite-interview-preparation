@@ -1237,15 +1237,14 @@ const deleteController = async (req, res) => {
 
 const filterQuestions = async (req, res) => {
   try {
-    const { course, subject, questionType, location, companyType } = req.body;
-    // console.log(course, subject, questionType, location, companyType);
+    const { course, subject, questionType, companyType } = req.body;
+    console.log(course, subject, questionType, companyType);
     const data = await postModel.aggregate([
       {
         $match: {
           course: course,
           subject: subject,
           questionType: questionType,
-          location: location,
           companyType: companyType,
         },
       },
@@ -1268,12 +1267,12 @@ const filterQuestions = async (req, res) => {
           course: 1,
           role: 1,
           companyType: 1,
-          location: 1,
           "user.email": 1,
           "user.username": 1,
         },
       },
     ]);
+    console.log(data);
     res.json(data);
   } catch (error) {
     console.log(error.message);

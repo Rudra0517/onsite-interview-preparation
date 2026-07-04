@@ -3,6 +3,8 @@ import { useState } from "react";
 import { axiosInstance } from "../../../API/axiosInstance";
 import { Link, Outlet } from "react-router-dom";
 import AdminSidebar from "./AdminSidebar";
+// import { FaBars } from "react-icons/fa";
+// import { ImCross } from "react-icons/im";
 
 const AdminDashboard = () => {
   return (
@@ -12,7 +14,7 @@ const AdminDashboard = () => {
       </div>
       <div className="flex-1 overflow-y-auto">
         <Outlet />
-      </div>  
+      </div>
     </div>
   );
 };

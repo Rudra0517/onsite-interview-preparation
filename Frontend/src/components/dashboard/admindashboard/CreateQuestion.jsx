@@ -16,7 +16,6 @@ const CreateQuestion = () => {
     questionType: "",
     subject: "",
     companyType: "",
-    location: "",
   });
   const subjectsByCourse = {
     MERN: ["HTML", "CSS", "JavaScript", "MongoDB", "Express", "React", "Node"],
@@ -50,7 +49,6 @@ const CreateQuestion = () => {
       const data = await axiosInstance.post("/createQuestion", formData, {
         auth: true,
       });
-      console.log(formData);
       toast.success("Question created successfully.");
       navigate("/dashboard/admin/allquestions");
       setFormData({
@@ -59,7 +57,6 @@ const CreateQuestion = () => {
         questionType: "",
         subject: "",
         companyType: "",
-        location: "",
       });
     } catch (error) {
       console.log(error.message);
@@ -156,7 +153,7 @@ const CreateQuestion = () => {
                 <option value="Start up">Start up</option>
               </select>
             </div>
-            <div>
+            {/* <div>
               <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
                 Location
               </label>
@@ -168,7 +165,7 @@ const CreateQuestion = () => {
                 onChange={handleInput}
                 className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
               />
-            </div>
+            </div> */}
           </div>
           <button className="w-full py-3 text-white bg-amber-400 font-semibold rounded-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300">
             ➕ Add Question

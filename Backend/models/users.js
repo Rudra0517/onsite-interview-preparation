@@ -33,7 +33,7 @@ const postSchema = new mongoose.Schema({
     ref: "users",
     required: true,
   },
-  location: String,
+  // location: String,
   companyType: String,
 });
 

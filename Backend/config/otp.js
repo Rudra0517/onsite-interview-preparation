@@ -19,7 +19,6 @@ const sendOtp = async (email, subject_text, message) => {
 
   try {
     const info = await transporter.sendMail(mailOptions);
-    // console.log(info.messageId);
   } catch (error) {
     console.log(error);
   }

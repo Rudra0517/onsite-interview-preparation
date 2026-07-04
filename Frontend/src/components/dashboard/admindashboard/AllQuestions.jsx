@@ -9,7 +9,6 @@ import { useAuth } from "../../../context/AuthContext";
 
 const AllQuestions = () => {
   const { userData } = useAuth();
-  console.log(userData);
   const [toBeUpdateQuestion, setToBeUpdateQuestion] = useState({
     question: "",
     answer: "",

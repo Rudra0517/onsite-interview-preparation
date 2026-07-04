@@ -2,6 +2,7 @@ const ROUTES = {
   HOME: "/",
   ABOUT: "/about",
   CONTACT: "/contact",
+  SERVICE: "/service",
 
   LOGIN: "/login",
   REGISTER: "/register",

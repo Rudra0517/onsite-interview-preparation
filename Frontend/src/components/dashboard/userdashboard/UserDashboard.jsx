@@ -7,7 +7,7 @@ const UserDashboard = () => {
   const [questionType, setQuestionType] = useState("");
   const [filteredQuestions, setFilteredQuestions] = useState([]);
   const [companyType, setCompanyType] = useState("All");
-  const [location, setLocation] = useState("");
+  // const [location, setLocation] = useState("");
   const [questions, setQuestions] = useState([]);
 
   // Subjects mapped by course
@@ -43,7 +43,6 @@ const UserDashboard = () => {
         subject,
         questionType,
         companyType,
-        location,
       };
       const { data } = await axiosInstance.post("/filterquestions", filterData);
       setFilteredQuestions(data);
@@ -139,7 +138,7 @@ const UserDashboard = () => {
           </div>
 
           {/* Location */}
-          <div className="flex-1">
+          {/* <div className="flex-1">
             <label className="text-sm text-black/70 mb-1 block">Location</label>
             <select
               value={location}
@@ -154,7 +153,7 @@ const UserDashboard = () => {
               <option value="Kolkata">Kolkata</option>
               <option value="Pune">Pune</option>
             </select>
-          </div>
+          </div> */}
 
           {/* Search */}
           <div className="flex items-end">

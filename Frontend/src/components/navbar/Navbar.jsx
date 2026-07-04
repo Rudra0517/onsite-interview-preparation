@@ -34,7 +34,7 @@ const Navbar = () => {
             About
           </Link>
           <Link
-            to={ROUTES.ABOUT}
+            to={ROUTES.SERVICE}
             className="text-white hover:underline transition text-[1.1rem]"
           >
             Services

@@ -10,13 +10,12 @@ import { MdNotificationsActive } from "react-icons/md";
 import { FaScrewdriverWrench } from "react-icons/fa6";
 
 const AllUsers = () => {
-  const [users, serUsers] = useState([ ]);
+  const [users, serUsers] = useState([]);
   const [status, setStatus] = useState(false);
   const [freeze, setFreeze] = useState(false);
 
   const freezeUser = async (email, isBlocked) => {
     try {
-      console.log(isBlocked);
       const data = await axiosInstance.put("/freeze", {
         isBlocked: isBlocked,
         email: email,
@@ -32,7 +31,6 @@ const AllUsers = () => {
     if (!confirm("Are you sure want to delete the user?")) {
       return;
     }
-    console.log(email);
     const data = await axiosInstance.delete("/delete", {
       data: { email },
     });
