@@ -107,7 +107,7 @@ const ForgetPassword = () => {
   };
 
   return (
-    <div className="h-[100vh] w-[100vw] flex justify-center items-center bg-gray-900">
+    <div className="h-[100vh] w-[100vw] flex justify-center items-center bg-gray-50">
       <div className="h-auto pt-4 pb-4 w-[550px] rounded-xl flex flex-col justify-center items-center shadow-lg bg-white">
         <h1 className="text-[25px] font-bold">Reset Password</h1>
         <form
@@ -146,16 +146,16 @@ const ForgetPassword = () => {
               <button
                 type="button"
                 onClick={sendOTP}
-                className="px-5 bg-blue-600 text-[white] font-mono text-[18px] rounded-[10px]"
+                className="px-5 bg-amber-400 text-[white] font-mono text-[18px] rounded-[10px]"
               >
-                Send
+                Get OTP
               </button>
             )}
             {status && isUser ? (
               <button
                 type="button"
                 onClick={verifyOtp}
-                className="px-5 bg-blue-600 text-[white] font-mono text-[18px] rounded-[10px]"
+                className="px-5 bg-amber-400 text-[white] font-mono text-[18px] rounded-[10px]"
               >
                 Verify
               </button>
@@ -192,7 +192,7 @@ const ForgetPassword = () => {
               <div className="flex justify-center items-center">
                 <button
                   type="submit"
-                  className={`bg-blue-600 px-3 py-2 rounded-md text-white font-mono  ${
+                  className={`bg-amber-400 px-3 py-2 rounded-md text-white font-mono  ${
                     dis ? "cursor-pointer" : "bg-gray-400 cursor-not-allowed"
                   }`}
                   disabled={!dis}

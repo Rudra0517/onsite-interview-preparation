@@ -198,12 +198,15 @@ const routes = createBrowserRouter([
         path: "*",
         element: <ErrorPage />,
       },
+      { path: "/login", element: <Login /> },
+      { path: "/register", element: <Register /> },
+      { path: "/forgetpassword", element: <ForgetPassword /> },
     ],
   },
 
-  { path: "/login", element: <Login /> },
-  { path: "/register", element: <Register /> },
-  { path: "/forgetpassword", element: <ForgetPassword /> },
+  // { path: "/login", element: <Login /> },
+  // { path: "/register", element: <Register /> },
+  // { path: "/forgetpassword", element: <ForgetPassword /> },
   {
     path: "/pendingadmins",
     element: (
