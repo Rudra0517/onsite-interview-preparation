@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
     const checkAuthStatus = async () => {
       try {
         const res = await axiosInstance.get("/me");
-        setUserData(res.data);
+        setUserData({ ...res.data });
         setIsLoggedIn(res?.isLoggedIn ?? false);
         setRole(res?.data?.role ?? null);
         setUsername(res?.data?.username ?? "");

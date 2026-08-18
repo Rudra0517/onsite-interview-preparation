@@ -34,11 +34,6 @@ const UserProfile = () => {
               <p className="text-gray-800 font-medium">{email}</p>
             </div>
 
-            {/* <div>
-              <p className="text-sm text-gray-500">Phone</p>
-              <p className="text-gray-800 font-medium">{user.phone}</p>
-            </div> */}
-
             <div>
               <p className="text-sm text-gray-500">Course</p>
               <p className="text-gray-800 font-medium">{course}</p>

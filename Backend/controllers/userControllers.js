@@ -4,6 +4,7 @@ const sendMessageViaMail = require("../config/email");
 const { pendingAdminModel, userModel, postModel } = require("../models/users");
 const sendOtp = require("../config/otp");
 const { default: mongoose } = require("mongoose");
+
 const testController = (req, res) => {
   res.json({ message: "Connection is healthy" });
 };
